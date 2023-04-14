@@ -17,24 +17,15 @@ public class EmployeeController : Controller
     public IActionResult Index()
     {
        List<Employee> employees = db.Employees.ToList();
-
-        List<EmployeeViewModel> employeeViewModels = employees.Select(x => new EmployeeViewModel()
-        {
-            Address = x.Address,
-            Name = x.Name,
-            Contact=x.Contact,
-            department=x.department,
-            Designation=x.Designation
-
-
-        }).ToList();
+        List<EmployeeViewModel> employeeViewModels = EmployeeMapper.MapToViewModel(employees);
 
         return View(employeeViewModels);
     }
     public IActionResult Details(int id)
     {
         var employee = db.Employees.Find(id);
-        return View(employee);
+        var employeeViewModel= EmployeeMapper.MapToViewModel(employee);
+        return View(employeeViewModel);
     }
 
     [HttpGet]
@@ -61,7 +52,8 @@ public class EmployeeController : Controller
     public IActionResult Edit(int id)
     {
         var employee = db.Employees.Find(id);
-        return View(employee);
+        var employeeViewModel=EmployeeMapper.MapToViewModel(employee);
+        return View(employeeViewModel);
     }
     [HttpPost]
     public IActionResult Edit(EmployeeViewModel employeeViewModel)
@@ -90,11 +82,13 @@ public class EmployeeController : Controller
     public IActionResult Delete(int id)
     {
         var employee = db.Employees.Find(id);
-        return View(employee);
+        var employeeViewModel= EmployeeMapper.MapToViewModel(employee);
+        return View(employeeViewModel);
     }
     [HttpPost]
-    public IActionResult Delete(Employee employee)
+    public IActionResult Delete(EmployeeViewModel employeeViewModel)
     {
+        var employee= EmployeeMapper.MapToModel(employeeViewModel);
         db.Employees.Remove(employee);
         db.SaveChanges();
         return RedirectToAction(nameof(Index));

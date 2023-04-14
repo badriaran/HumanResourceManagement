@@ -5,10 +5,11 @@ namespace HumanResourceManagement.web.Mappers;
 
 public class EmployeeMapper
 {
-    public static Employee MapToModel(EmployeeViewModel employeeViewModel)
+    public static Employee MapToModel(EmployeeViewModel employeeViewModel) //convert employee viewmodel to employee model
     {
         var employee = new Employee
         {
+            Id= employeeViewModel.Id,
             Name = employeeViewModel.Name,
             Gender = employeeViewModel.Gender,
             Address = employeeViewModel.Address,
@@ -21,5 +22,28 @@ public class EmployeeMapper
 
         };
         return employee;
+    }
+    public static EmployeeViewModel MapToViewModel(Employee employee)
+    {
+        var employeeViewModel = new EmployeeViewModel()
+        {   //destination= source
+
+            Id= employee.Id,
+            Name = employee.Name,
+            Gender = employee.Gender,
+            Address = employee.Address,
+            Dob = employee.Dob,
+            Contact = employee.Contact,
+            department= employee.department,
+            Designation= employee.Designation,
+            JoinedDate= employee.JoinedDate,
+            ProfileImagePath= employee.ProfileImagePath
+        };
+        return employeeViewModel;
+    }
+    public static List<EmployeeViewModel> MapToViewModel(List<Employee> employees)
+    {
+        var employeeViewModels = employees.Select(emp => MapToViewModel(emp)).ToList();
+        return employeeViewModels;
     }
 }

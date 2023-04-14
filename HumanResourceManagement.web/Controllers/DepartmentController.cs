@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HumanResourceManagement.web.Data;
 using HumanResourceManagement.web.Models;
+using HumanResourceManagement.web.ViewModels;
+using HumanResourceManagement.web.Mappers;
 
 namespace HumanResourceManagement.web.Controllers;
 
@@ -10,7 +12,8 @@ public class DepartmentController : Controller
     public IActionResult Index()
     {
         List<Department> departments = db.Departments.ToList();
-        return View(departments);
+        List<DepartmentViewModel> departmentViewModel = DepartmentMapper.MapToViewModel(departments);
+        return View(departmentViewModel);
     }
     [HttpGet]
     public IActionResult Add()
@@ -18,41 +21,49 @@ public class DepartmentController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult Add(Department department)
+    public IActionResult Add(DepartmentViewModel departmentViewModel)
     {
+        var department=DepartmentMapper.MapToModel(departmentViewModel);
         db.Departments.Add(department);
         db.SaveChanges();
         return RedirectToAction("Index");
 
     }
-
+    [HttpGet]
     public IActionResult Details(int id)
     {
         var department = db.Departments.Find(id);
-        return View(department);
+        var departmentViewModel=DepartmentMapper.MapToViewModel(department);
+        return View(departmentViewModel);
     }
     [HttpGet]
     public IActionResult Edit(int id)
     {
         var department = db.Departments.Find(id);
-        return View(department);
+        var departmentViewModel = DepartmentMapper.MapToViewModel(department);
+        return View(departmentViewModel);
     }
     [HttpPost]
-    public IActionResult Edit(Department department)
+    public IActionResult Edit(DepartmentViewModel departmentViewModel)
     {
+        var department = DepartmentMapper.MapToModel(departmentViewModel);
         db.Departments.Update(department);
         db.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
+    [HttpGet]
     public IActionResult Delete(int id)
     {
-        var department = db.Departments.Find(id);
 
-        return View(department);
+        var department = db.Departments.Find(id);
+        var departmentViewModel = DepartmentMapper.MapToViewModel(department);
+
+        return View(departmentViewModel);
     }
     [HttpPost]
-    public IActionResult Delete(Department department)
+    public IActionResult Delete(DepartmentViewModel departmentViewModel)
     {
+        var department = DepartmentMapper.MapToModel(departmentViewModel);
         db.Departments.Remove(department);
         db.SaveChanges();
         return RedirectToAction(nameof(Index));

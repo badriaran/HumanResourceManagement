@@ -1,4 +1,4 @@
-﻿@model List<Department>
+﻿@model List<DepartmentViewModel>
 
 <table class="table">
     <thead>
@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-       @foreach(Department d in Model)
+       @foreach(DepartmentViewModel d in Model)
         {
             <tr>
                 <td>@d.Name</td>
