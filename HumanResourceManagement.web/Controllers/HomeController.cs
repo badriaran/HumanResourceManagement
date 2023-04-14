@@ -1,4 +1,4 @@
-﻿using HumanResourceManagement.web.Models;
+﻿using HumanResourceManagement.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

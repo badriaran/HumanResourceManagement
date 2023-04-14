@@ -1,4 +1,4 @@
-﻿@model List<Employee>
+﻿@model List<EmployeeViewModel>
 
 <table class="table">
     <thead>
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Employee e in Model)
+        @foreach(EmployeeViewModel e in Model)
         {
             <tr>
                 @{

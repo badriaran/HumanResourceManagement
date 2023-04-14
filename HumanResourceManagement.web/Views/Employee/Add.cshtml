@@ -1,8 +1,24 @@
-﻿@model Employee
-@using HumanResourceManagement.web.Enums;
+﻿@model EmployeeViewModel
+
 
 @{
     string[] genders = Enum.GetNames<Sex>();
+    SelectListItem[] departments =
+    {
+        new SelectListItem{Text="---Select---", Value=" ", Disabled=true},
+        new SelectListItem{Text="Research and Development", Value="rnd"},
+        new SelectListItem{Text="operations", Value="operations"},
+         new SelectListItem{Text="IT", Value="IT"}
+
+    };
+    SelectListItem[] designations =
+           {
+        new SelectListItem{Text="---Select---", Value=" ", Disabled=true},
+        new SelectListItem{Text="Software Engineer", Value="se"},
+        new SelectListItem{Text="Sr. software engineer", Value="sr. se"},
+         new SelectListItem{Text="Principle Engineer", Value="pe"}
+
+    };
 }
 
 <div class="Card border-4">
@@ -53,12 +69,13 @@
 
             <div class="col-md-6">
                 <label asp-for="Department" class="form-label">Department</label>
-                <input asp-for="Department" class="form-control">
+                <select asp-for="Department" asp-items=departments class="form-control"></select> @*Adding Select options*@
             </div>
             <div class="col-md-6">
                 <label asp-for="Designation" class="form-label">Designation</label>
-                <input asp-for="Designation" class="form-control">
+                <select asp-for="Designation" asp-items=designations class="form-control"></select>
             </div>
+
             <div class="col-md-6">
                 <label asp-for="ProfileImage" class="form-label"></label>
                 <input class="form-control" asp-for=ProfileImage type="file" >

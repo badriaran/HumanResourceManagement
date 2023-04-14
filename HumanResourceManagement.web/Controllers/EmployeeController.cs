@@ -1,7 +1,9 @@
 ﻿using HumanResourceManagement.web.Data;
 using HumanResourceManagement.web.Enums;
 using HumanResourceManagement.web.Helpers;
+using HumanResourceManagement.web.Mappers;
 using HumanResourceManagement.web.Models;
+using HumanResourceManagement.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 
@@ -14,9 +16,20 @@ public class EmployeeController : Controller
 
     public IActionResult Index()
     {
-        List<Employee> employees = db.Employees.ToList();
+       List<Employee> employees = db.Employees.ToList();
 
-        return View(employees);
+        List<EmployeeViewModel> employeeViewModels = employees.Select(x => new EmployeeViewModel()
+        {
+            Address = x.Address,
+            Name = x.Name,
+            Contact=x.Contact,
+            department=x.department,
+            Designation=x.Designation
+
+
+        }).ToList();
+
+        return View(employeeViewModels);
     }
     public IActionResult Details(int id)
     {
@@ -31,9 +44,11 @@ public class EmployeeController : Controller
     }
 
     [HttpPost]
-    public IActionResult Add(Employee employee)
+    public IActionResult Add(EmployeeViewModel employeeViewModel)
     {
-        var relativePath = ProfileImageHelper.SaveImage(employee.ProfileImage);
+        var relativePath = employeeViewModel.ProfileImage?.SaveImage();
+
+        var employee = EmployeeMapper.MapToModel(employeeViewModel);
         employee.ProfileImagePath= relativePath;
 
         
@@ -49,9 +64,23 @@ public class EmployeeController : Controller
         return View(employee);
     }
     [HttpPost]
-    public IActionResult Edit(Employee employee)
+    public IActionResult Edit(EmployeeViewModel employeeViewModel)
     {
+        var relativePath = employeeViewModel.ProfileImage?.SaveImage();
+        employeeViewModel.ProfileImagePath = relativePath;
+        var employee = new Employee
+        {
+            Name = employeeViewModel.Name,
+            Gender = employeeViewModel.Gender,
+            Address = employeeViewModel.Address,
+            Dob = employeeViewModel.Dob,
+            Contact = employeeViewModel.Contact,
+            department = employeeViewModel.department,
+            Designation = employeeViewModel.Designation,
+            JoinedDate = employeeViewModel.JoinedDate,
+            ProfileImagePath = employeeViewModel.ProfileImagePath
 
+        };
         db.Employees.Update(employee);
         db.SaveChanges();
         return RedirectToAction(nameof(Index));
