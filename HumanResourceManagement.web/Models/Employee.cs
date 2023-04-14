@@ -26,5 +26,10 @@ public class Employee
     public IFormFile? ProfileImage { get; set; }
     public string ProfileImagePath { get; set; } = string.Empty;    
 
+    //connecting two tables
+    public int? DepartmentId { get; set; }
+
+    public Department department { get; set; }
+
 
 }

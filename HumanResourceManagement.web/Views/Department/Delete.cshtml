@@ -1,0 +1,10 @@
+﻿@model Department
+
+<form asp-action="delete" method="post">
+    <input  type="hidden" asp-for="Id"/>
+
+    <h1> Do you really want to remove @Model.Name</h1>
+    <a class="btn btn-success" href="/department/index">Cancel</a>
+    <button class="btn btn-danger" type="submit">Delete</button>
+
+</form>

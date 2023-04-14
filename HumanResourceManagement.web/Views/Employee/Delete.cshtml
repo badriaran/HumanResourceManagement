@@ -2,6 +2,7 @@
 
 <form asp-action="delete" method="post">
     <input type="hidden" asp-for="Id" />
+
     <h1>Are You Sure Want to Delete @Model.Name ?</h1>
     <a href="/employee/index" class="btn btn-success">
         Cancel

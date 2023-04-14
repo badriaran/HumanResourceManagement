@@ -1,0 +1,30 @@
+﻿@model Department
+
+<div class="Card border-4">
+    <div class="Card-body">
+        <form class="row g-3" action="/department/add" method="post">
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label"></label>
+                @* <input type="text" name="Name" class="form-control">*@
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="establishedDate" class="form-label"></label>
+                <input asp-for="establishedDate" class="form-control" />
+                <span asp-validation-for="establishedDate" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Description" class="form-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary w-25 float-end">Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model List<Department>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <td>Name</td>
+            <td>Established Date</td>
+            <td>Descriptions</td>
+            <td></td>
+
+        </tr>
+    </thead>
+    <tbody>
+       @foreach(Department d in Model)
+        {
+            <tr>
+                <td>@d.Name</td>
+                <td>@d.establishedDate</td>
+                <td>@d.Description</td>
+                <td>
+                    <a href="/department/details/@d.Id" class="bi bi-eye"></a>
+                    <a href="/department/edit/@d.Id" class="bi bi-pen"></a>
+                    <a href="/department/delete/@d.Id" class="bi bi-trash danger"></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
