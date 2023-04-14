@@ -1,0 +1,74 @@
+﻿@model Employee
+@using HumanResourceManagement.web.Enums;
+
+@{
+    string[] genders = Enum.GetNames<Sex>();
+}
+
+<div class="Card border-4">
+    <div class="Card-body">
+       <form class="row g-3" action="/employee/add" method="post" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label"></label>
+               @* <input type="text" name="Name" class="form-control">*@
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Contact" class="form-label"></label>
+                <input asp-for="Contact" class="form-control">
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Gender</label>
+                <div>
+                    @foreach (string g in genders)
+                    {
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="@g" value="@g">
+                            <label class="form-check-label" for="@g">@g</label>
+                        </div>
+                    }
+                </div>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Address" class="form-label"></label>
+                <input asp-for="Address" class="form-control">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Dob" class="form-label">Date Of Birth</label>
+                <input asp-for="Dob" class="form-control">
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="JoinedDate" class="form-label"></label>
+                <input asp-for="JoinedDate" class="form-control">
+                <span asp-validation-for="JoinedDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Department" class="form-label">Department</label>
+                <input asp-for="Department" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Designation" class="form-label">Designation</label>
+                <input asp-for="Designation" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label asp-for="ProfileImage" class="form-label"></label>
+                <input class="form-control" asp-for=ProfileImage type="file" >
+            </div>
+
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary w-25 float-end">Save</button>
+            </div>
+
+       </form>
+    </div>
+</div>

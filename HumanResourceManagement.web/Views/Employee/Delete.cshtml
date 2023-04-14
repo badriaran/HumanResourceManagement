@@ -1,0 +1,15 @@
+﻿@model Employee;
+
+<form asp-action="delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <h1>Are You Sure Want to Delete @Model.Name ?</h1>
+    <a href="/employee/index" class="btn btn-success">
+        Cancel
+    </a>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+@*This is how we write javascript*@
+<script>
+    var confirmation=confirm("Are You Sure Want to Delete?");
+</script>
