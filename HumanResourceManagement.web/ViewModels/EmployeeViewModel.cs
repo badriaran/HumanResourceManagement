@@ -18,17 +18,13 @@ public class EmployeeViewModel
     public string Contact { get; set; } = string.Empty;
     [DataType(DataType.Date)]
     public DateTime JoinedDate { get; set; }
-    public string Department { get; set; } = string.Empty;
+    public int Department { get; set; }
+    public string DepartmentName { get; set; }
     public string Designation { get; set; } = string.Empty;
 
   
     [DisplayName("Your Profile Image")]
     public IFormFile? ProfileImage { get; set; }
     public string ProfileImagePath { get; set; } = string.Empty;
-
-    //connecting two tables
-    public int? DepartmentId { get; set; }
-
-    public Department department { get; set; }
 
 }

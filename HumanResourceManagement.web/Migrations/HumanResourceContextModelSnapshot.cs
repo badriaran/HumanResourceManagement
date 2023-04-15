@@ -42,7 +42,7 @@ namespace HumanResourceManagement.web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("HumanResourceManagement.web.Models.Employee", b =>

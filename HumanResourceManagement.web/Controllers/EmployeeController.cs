@@ -5,6 +5,7 @@ using HumanResourceManagement.web.Mappers;
 using HumanResourceManagement.web.Models;
 using HumanResourceManagement.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data.SqlClient;
 
 namespace HumanResourceManagement.web.Controllers;
@@ -31,6 +32,9 @@ public class EmployeeController : Controller
     [HttpGet]
     public IActionResult Add()
     {
+        var departments= db.Departments.ToList();
+        var depSelectList= departments.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() });
+        ViewData["deps"] = depSelectList;
         return View();
     }
 

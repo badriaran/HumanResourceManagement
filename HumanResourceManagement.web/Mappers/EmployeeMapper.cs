@@ -15,7 +15,7 @@ public class EmployeeMapper
             Address = employeeViewModel.Address,
             Dob = employeeViewModel.Dob,
             Contact = employeeViewModel.Contact,
-            department = employeeViewModel.department,
+            DepartmentId = employeeViewModel.Department,
             Designation = employeeViewModel.Designation,
             JoinedDate = employeeViewModel.JoinedDate,
             ProfileImagePath = employeeViewModel.ProfileImagePath
@@ -34,7 +34,7 @@ public class EmployeeMapper
             Address = employee.Address,
             Dob = employee.Dob,
             Contact = employee.Contact,
-            department= employee.department,
+            DepartmentName= employee.department.Name,
             Designation= employee.Designation,
             JoinedDate= employee.JoinedDate,
             ProfileImagePath= employee.ProfileImagePath
