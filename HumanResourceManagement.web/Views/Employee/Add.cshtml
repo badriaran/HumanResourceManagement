@@ -3,14 +3,8 @@
 
 @{
     string[] genders = Enum.GetNames<Sex>();
-    SelectListItem[] departments =
-    {
-        new SelectListItem{Text="---Select---", Value=" ", Disabled=true},
-        new SelectListItem{Text="Research and Development", Value="rnd"},
-        new SelectListItem{Text="operations", Value="operations"},
-         new SelectListItem{Text="IT", Value="IT"}
+    var departments = ViewData["Deps"] as IEnumerable<SelectListItem>;
 
-    };
     SelectListItem[] designations =
            {
         new SelectListItem{Text="---Select---", Value=" ", Disabled=true},
