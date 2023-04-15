@@ -59,20 +59,9 @@ public class EmployeeController : Controller
     public IActionResult Edit(EmployeeViewModel employeeViewModel)
     {
         var relativePath = employeeViewModel.ProfileImage?.SaveImage();
-        employeeViewModel.ProfileImagePath = relativePath;
-        var employee = new Employee
-        {
-            Name = employeeViewModel.Name,
-            Gender = employeeViewModel.Gender,
-            Address = employeeViewModel.Address,
-            Dob = employeeViewModel.Dob,
-            Contact = employeeViewModel.Contact,
-            department = employeeViewModel.department,
-            Designation = employeeViewModel.Designation,
-            JoinedDate = employeeViewModel.JoinedDate,
-            ProfileImagePath = employeeViewModel.ProfileImagePath
-
-        };
+        
+        var employee = EmployeeMapper.MapToModel(employeeViewModel);
+        employee.ProfileImagePath = relativePath;
         db.Employees.Update(employee);
         db.SaveChanges();
         return RedirectToAction(nameof(Index));

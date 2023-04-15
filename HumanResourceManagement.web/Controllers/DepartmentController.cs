@@ -24,6 +24,9 @@ public class DepartmentController : Controller
     public IActionResult Add(DepartmentViewModel departmentViewModel)
     {
         var department=DepartmentMapper.MapToModel(departmentViewModel);
+        if (department is null && !ModelState.IsValid)
+            return Problem("To be inserted department Object is null. ");
+
         db.Departments.Add(department);
         db.SaveChanges();
         return RedirectToAction("Index");
