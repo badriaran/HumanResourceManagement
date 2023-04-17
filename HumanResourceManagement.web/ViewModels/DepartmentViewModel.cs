@@ -1,4 +1,4 @@
-﻿using HumanResourceManagement.web.Models;
+﻿using HumanResourceManagement.ApplicationCore.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 

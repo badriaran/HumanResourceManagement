@@ -1,8 +1,8 @@
-﻿using HumanResourceManagement.web.Data;
-using HumanResourceManagement.web.Enums;
-using HumanResourceManagement.web.Helpers;
+﻿using HumanResourceManagement.ApplicationCore.Data;
+using HumanResourceManagement.ApplicationCore.Enums;
+using HumanResourceManagement.ApplicationCore.Extensions;
 using HumanResourceManagement.web.Mappers;
-using HumanResourceManagement.web.Models;
+using HumanResourceManagement.ApplicationCore.Models;
 using HumanResourceManagement.web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

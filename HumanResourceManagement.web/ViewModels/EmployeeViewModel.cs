@@ -1,5 +1,5 @@
-﻿using HumanResourceManagement.web.Enums;
-using HumanResourceManagement.web.Models;
+﻿using HumanResourceManagement.ApplicationCore.Enums;
+using HumanResourceManagement.ApplicationCore.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 

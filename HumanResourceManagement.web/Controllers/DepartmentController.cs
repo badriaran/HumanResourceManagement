@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using HumanResourceManagement.web.Data;
-using HumanResourceManagement.web.Models;
+using HumanResourceManagement.ApplicationCore.Data;
+using HumanResourceManagement.ApplicationCore.Models;
 using HumanResourceManagement.web.ViewModels;
 using HumanResourceManagement.web.Mappers;
 

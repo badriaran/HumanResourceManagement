@@ -1,4 +1,4 @@
-﻿using HumanResourceManagement.web.Models;
+﻿using HumanResourceManagement.ApplicationCore.Models;
 using HumanResourceManagement.web.ViewModels;
 
 namespace HumanResourceManagement.web.Mappers;

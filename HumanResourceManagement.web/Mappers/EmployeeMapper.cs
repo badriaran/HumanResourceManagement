@@ -1,4 +1,4 @@
-﻿using HumanResourceManagement.web.Models;
+﻿using HumanResourceManagement.ApplicationCore.Models;
 using HumanResourceManagement.web.ViewModels;
 
 namespace HumanResourceManagement.web.Mappers;
@@ -34,7 +34,7 @@ public class EmployeeMapper
             Address = employee.Address,
             Dob = employee.Dob,
             Contact = employee.Contact,
-            DepartmentName= employee.department?.Name??"N/A",
+            DepartmentName= employee.department?.Name??"N/A",            
             Designation= employee.Designation,
             JoinedDate= employee.JoinedDate,
             ProfileImagePath= employee.ProfileImagePath
