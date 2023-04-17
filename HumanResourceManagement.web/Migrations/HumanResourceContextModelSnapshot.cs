@@ -60,10 +60,6 @@ namespace HumanResourceManagement.web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Department")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 

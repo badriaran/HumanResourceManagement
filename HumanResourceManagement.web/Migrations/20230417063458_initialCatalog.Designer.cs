@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HumanResourceManagement.web.Migrations
 {
     [DbContext(typeof(HumanResourceContext))]
-    [Migration("20230411143255_InitialEmployeeTable")]
-    partial class InitialEmployeeTable
+    [Migration("20230417063458_initialCatalog")]
+    partial class initialCatalog
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,29 @@ namespace HumanResourceManagement.web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("HumanResourceManagement.web.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("establishedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
+                });
 
             modelBuilder.Entity("HumanResourceManagement.web.Models.Employee", b =>
                 {
@@ -40,9 +63,8 @@ namespace HumanResourceManagement.web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Department")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("DepartmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Designation")
                         .IsRequired()
@@ -61,9 +83,29 @@ namespace HumanResourceManagement.web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProfileImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("HumanResourceManagement.web.Models.Employee", b =>
+                {
+                    b.HasOne("HumanResourceManagement.web.Models.Department", "department")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentId");
+
+                    b.Navigation("department");
+                });
+
+            modelBuilder.Entity("HumanResourceManagement.web.Models.Department", b =>
+                {
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

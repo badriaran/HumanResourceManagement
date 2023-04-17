@@ -17,7 +17,6 @@ public class Employee
     public string Contact { get; set; } = string.Empty;
     
     public DateTime JoinedDate { get; set; }
-    public string Department { get; set; } = string.Empty;
     public string Designation { get; set; }=string.Empty;
     public string ProfileImagePath { get; set; } = string.Empty;    
 

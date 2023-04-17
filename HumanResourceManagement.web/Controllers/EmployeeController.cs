@@ -33,7 +33,8 @@ public class EmployeeController : Controller
     public IActionResult Add()
     {
         var departments= db.Departments.ToList();
-        var depSelectList= departments.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() });
+        var depSelectList= departments.Select(x=> new SelectListItem { Text=x.Name, Value=x.Id.ToString() }).ToList();
+        depSelectList.Add(new SelectListItem { Text = "--Select Department--", Selected = true });
         ViewData["deps"] = depSelectList;
         return View();
     }

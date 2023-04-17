@@ -34,7 +34,7 @@ public class EmployeeMapper
             Address = employee.Address,
             Dob = employee.Dob,
             Contact = employee.Contact,
-            DepartmentName= employee.department.Name,
+            DepartmentName= employee.department?.Name??"N/A",
             Designation= employee.Designation,
             JoinedDate= employee.JoinedDate,
             ProfileImagePath= employee.ProfileImagePath
